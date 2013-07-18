@@ -1,0 +1,7 @@
+# Ingore Vagrant stuff
+*.box
+.vagrant
+.bashrc
+.bash_history
+.cache/
+.sudo_as_admin_successful
