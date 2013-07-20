@@ -1,0 +1,27 @@
+{
+    "name": "mirkoio/rescuetime",
+    "type": "library",
+    "description": "PHP wrapper library for RescueTime API",
+    "keywords": ["rescuetime", "api"],
+    "homepage": "https://github.com/borivojevic/rescuetime-api-php",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mirko Borivojevic",
+            "email": "mirko@mirkoborivojevic.com",
+            "homepage": "http://mirkoborivojevic.com/"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.1",
+        "guzzle/guzzle": "3.*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "3.7.*"
+    },
+    "autoload": {
+        "psr-0": {
+            "MirkoIO": "src"
+        }
+    }
+}

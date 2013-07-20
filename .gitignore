@@ -1,7 +1,12 @@
 # Ingore Vagrant stuff
 *.box
+.cache/
 .vagrant
 .bashrc
 .bash_history
-.cache/
 .sudo_as_admin_successful
+
+# Ignore Composer stuff
+.composer/
+vendor/
+composer.lock
