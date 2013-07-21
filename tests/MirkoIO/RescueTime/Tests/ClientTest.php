@@ -9,6 +9,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         $apiKey = 'secret';
 
         $client = new \MirkoIO\RescueTime\Client($apiKey);
-        $client->request();
+        $result = $client->request();
+        var_dump($result);
     }
 }
