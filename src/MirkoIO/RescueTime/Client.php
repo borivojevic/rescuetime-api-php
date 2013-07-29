@@ -5,10 +5,11 @@ use Guzzle\Http\Client as GuzzleClient;
 
 class Client
 {
+    private $apiKey;
 
     public function __construct($apiKey)
     {
-        $this->requestQueryParameters = new RequestQueryParameters($apiKey);
+        $this->apiKey = $apiKey;
         $this->guzzleClient = null;
     }
 
@@ -16,13 +17,39 @@ class Client
      * Sends request to RescueTime API and returns \Activity array
      * @return Array
      */
-    public function request()
-    {
-        $client = $this->guzzleClient ?: new GuzzleClient($this->requestQueryParameters->apiEndpoint);
+    public function request(
+        $perspective = null,
+        $resolution_time = null,
+        $restrict_group = null,
+        $restrict_user = null,
+        Date $restrict_begin = null,
+        Date $restrict_end = null,
+        $restrict_kind = null,
+        $restrict_project = null,
+        $restrict_thing = null,
+        $restrict_thingy = null
+    ) {
+        $requestQueryParameters = new RequestQueryParameters(
+            compact(
+                'perspective',
+                'resolution_time',
+                'restrict_group',
+                'restrict_user',
+                'restrict_begin',
+                'restrict_end',
+                'restrict_kind',
+                'restrict_project',
+                'restrict_thing',
+                'restrict_thingy'
+            )
+        );
+        $requestQueryParameters->apiKey = $this->apiKey;
+
+        $client = $this->guzzleClient ?: new GuzzleClient($requestQueryParameters->apiEndpoint);
         $request = $client->get(
             '/anapi/data',
             array('Accept' => 'application/json'),
-            array('query' => $this->requestQueryParameters->toArray())
+            array('query' => $requestQueryParameters->toArray())
         );
 
         $response = $request->send();

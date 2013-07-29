@@ -139,23 +139,22 @@ class RequestQueryParameters
      */
     private $restrict_thingy;
 
-    public function __construct($apiKey)
+    public function __construct($params)
     {
-        $this->apiKey = $apiKey;
         $this->apiEndpoint = 'https://www.rescuetime.com';
         $this->format = 'json';
         $this->operation = 'select';
         $this->version = 0;
-        $this->perspective = 'rank';
-        $this->resolution_time = 'hour';
-        $this->restrict_group = null;
-        $this->restrict_user = null;
-        $this->restrict_begin = null;
-        $this->restrict_end = null;
-        $this->restrict_kind = null;
-        $this->restrict_project = null;
-        $this->restrict_thing = null;
-        $this->restrict_thingy = null;
+        $this->setPerspective($params['perspective'] ?: 'rank');
+        $this->setResolutionTime($params['resolution_time'] ?: 'hour');
+        $this->restrict_group = $params['restrict_group'] ?: null;
+        $this->restrict_user = $params['restrict_user'] ?: null;
+        $this->restrict_begin = $params['restrict_begin'] ?: null;
+        $this->restrict_end = $params['restrict_end'] ?: null;
+        $this->setRestrictKind($params['restrict_kind'] ?: null);
+        $this->restrict_project = $params['restrict_project'] ?: null;
+        $this->restrict_thing = $params['restrict_thing'] ?: null;
+        $this->restrict_thingy = $params['restrict_thingy'] ?: null;
     }
 
     public function __get($attribute)
@@ -174,15 +173,50 @@ class RequestQueryParameters
         return null;
     }
 
+    public function setPerspective($perspective)
+    {
+        if ($perspective && !in_array($perspective, array("rank", "interval", "member"))) {
+            throw new \Exception("Perspective must be one of rank, interval or member");
+        }
+        $this->perspective = $perspective;
+    }
+
+    public function setResolutionTime($resolution)
+    {
+        if ($resolution && !in_array($resolution, array("month", "week", "day", "hour"))) {
+            var_dump($resolution);
+            throw new \Exception("Resolution time must be one of month, week, day or hour");
+        }
+        $this->resolution_time = $resolution;
+    }
+
+    public function setRestrictKind($kind)
+    {
+        if ($kind && !in_array($kind, array("category", "activity", "productivity"))) {
+            throw new \Exception("Restrict kind must be one of category, activity, productivity");
+        }
+        $this->restrict_kind = $kind;
+    }
+
     public function __set($attribute, $value)
     {
-        if (property_exists($this, $attribute)) {
+        if ($attribute == "perspective") {
+            $this->setPerspective($value);
+            return true;
+        } elseif ($attribute == "resolution_time") {
+            $this->setResolutionTime($value);
+            return true;
+        } elseif ($attribute == "restrict_kind") {
+            $this->setRestrictKind($value);
+            return true;
+        } elseif (property_exists($this, $attribute)) {
             $this->$attribute = $value;
+            return true;
         }
 
         $trace = debug_backtrace();
         trigger_error(
-            'Undefined property via __get(): ' . $attribute .
+            'Undefined property via __set(): ' . $attribute .
             ' in ' . $trace[0]['file'] .
             ' on line ' . $trace[0]['line'],
             E_USER_NOTICE
