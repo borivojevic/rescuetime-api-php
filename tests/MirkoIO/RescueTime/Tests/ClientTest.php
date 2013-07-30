@@ -28,7 +28,9 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 
     public function testApiRequest()
     {
-        $result = $this->Client->request();
+        $result = $this->Client->request("rank");
+        $result = $this->Client->request("interval");
+        $result = $this->Client->request("member");
     }
 
     /**

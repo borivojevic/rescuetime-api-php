@@ -53,10 +53,10 @@ class Client
         );
 
         $response = $request->send();
-        return $this->handleResponse($response);
+        return $this->handleResponse($requestQueryParameters->perspective, $response);
     }
 
-    private function handleResponse($response)
+    private function handleResponse($perspective, $response)
     {
         if (!$response || !$response->isSuccessful()) {
             throw new \Exception("HTTP request failed");
@@ -77,9 +77,8 @@ class Client
         }
 
         $result = array();
-        foreach ($responseJsonArray['rows'] as $args) {
-            $reflect  = new \ReflectionClass("\\MirkoIO\\RescueTime\\Activity");
-            $result[] = $reflect->newInstanceArgs($args);
+        foreach ($responseJsonArray['rows'] as $columns) {
+            $result[]  = new Activity($perspective, $columns);
         }
 
         return $result;
