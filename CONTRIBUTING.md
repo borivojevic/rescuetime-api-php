@@ -34,4 +34,16 @@ vagrant ssh
 
 The application code is found in vagrant home directory at /home/vagrant
 
+The very first time you'll have to install application dependencies:
+
+```
+composer install
+```
+
 ### Testing
+
+To run unit test suite type:
+
+```
+phpunit
+```
