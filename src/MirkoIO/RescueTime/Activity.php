@@ -13,42 +13,51 @@ class Activity
     protected $activityCategory;
     protected $productivityCode;
 
-    public function __construct($perspective, $columns)
+    public function __construct($rowHeaders, $columns)
     {
-        switch ($perspective) {
-            case 'rank':
-                $this->rank = $columns[0];
-                $this->date = null;
-                $this->person = null;
-                $this->timeSpentSeconds = $columns[1];
-                $this->numberOfPeople = $columns[2];
-                $this->activityName = $columns[3];
-                $this->activityCategory = $columns[4];
-                $this->productivityCode = $columns[5];
-                break;
-            case 'interval':
-                $this->rank = null;
-                $this->date = $columns[0];
-                $this->person = null;
-                $this->timeSpentSeconds = $columns[1];
-                $this->numberOfPeople = $columns[2];
-                $this->activityName = $columns[3];
-                $this->activityCategory = $columns[4];
-                $this->productivityCode = $columns[5];
-                break;
-            case 'member':
-                $this->rank = null;
-                $this->date = null;
-                $this->person = $columns[0];
-                $this->timeSpentSeconds = $columns[1];
-                $this->numberOfPeople = null;
-                $this->activityName = $columns[2];
-                $this->activityCategory = $columns[3];
-                $this->productivityCode = $columns[4];
-                break;
-            default:
-                throw new \Exception('Unknown perspective');
-                break;
+        $properties = array();
+        foreach ($rowHeaders as $key => $header) {
+            switch ($header) {
+                case 'Rank':
+                    $properties[$key] = 'rank';
+                    break;
+                case 'Date':
+                    $properties[$key] = 'date';
+                    break;
+                case 'Person':
+                    $properties[$key] = 'person';
+                    break;
+                case 'Time Spent (seconds)':
+                    $properties[$key] = 'timeSpentSeconds';
+                    break;
+                case 'Number of People':
+                    $properties[$key] = 'numberOfPeople';
+                    break;
+                case 'Activity':
+                    $properties[$key] = 'activityName';
+                    break;
+                case 'Category':
+                    $properties[$key] = 'activityCategory';
+                    break;
+                case 'Productivity':
+                    $properties[$key] = 'productivityCode';
+                    break;
+            }
+        }
+
+        $this->rank = null;
+        $this->date = null;
+        $this->person = null;
+        $this->timeSpentSeconds = null;
+        $this->numberOfPeople = null;
+        $this->activityName = null;
+        $this->activityCategory = null;
+        $this->productivityCode = null;
+
+        foreach ($columns as $key => $value) {
+            if (array_key_exists($key, $properties)) {
+                $this->$properties[$key] = $value;
+            }
         }
     }
 

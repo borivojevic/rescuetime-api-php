@@ -53,10 +53,10 @@ class Client
         );
 
         $response = $request->send();
-        return $this->handleResponse($requestQueryParameters->perspective, $response);
+        return $this->handleResponse($response);
     }
 
-    private function handleResponse($perspective, $response)
+    private function handleResponse($response)
     {
         if (!$response || !$response->isSuccessful()) {
             throw new \Exception("HTTP request failed");
@@ -77,8 +77,9 @@ class Client
         }
 
         $result = array();
+        $rowHeaders = $responseJsonArray['row_headers'];
         foreach ($responseJsonArray['rows'] as $columns) {
-            $result[]  = new Activity($perspective, $columns);
+            $result[]  = new Activity($rowHeaders, $columns);
         }
 
         return $result;
