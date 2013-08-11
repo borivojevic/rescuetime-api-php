@@ -76,7 +76,7 @@ class RequestQueryParameters
      * inclusive (always at time 00:00, start hour/minute not supported)
      * Format ISO 8601 "YYYY-MM-DD"
      *
-     * @var Date
+     * @var DateTime
      */
     private $restrict_begin;
 
@@ -86,7 +86,7 @@ class RequestQueryParameters
      * So, to set 2009-07-31 data as last in your batch, set end date of 2009-08-01
      * Format ISO 8601 "YYYY-MM-DD"
      *
-     * @var Date
+     * @var DateTime
      */
     private $restrict_end;
 
@@ -234,13 +234,17 @@ class RequestQueryParameters
             'resolution_time' => $this->resolution_time,
             'restrict_group' => $this->restrict_group,
             'restrict_user' => $this->restrict_user,
-            'restrict_begin' => $this->restrict_begin,
-            'restrict_end' => $this->restrict_end,
             'restrict_kind' => $this->restrict_kind,
             'restrict_project' => $this->restrict_project,
             'restrict_thing' => $this->restrict_thing,
             'restrict_thingy' => $this->restrict_thingy
         );
+        if ($this->restrict_begin) {
+            $queryParams['restrict_begin'] = $this->restrict_begin->format('Y-m-d');
+        }
+        if ($this->restrict_end) {
+            $queryParams['restrict_end'] = $this->restrict_end->format('Y-m-d');
+        }
         $queryParams = array_filter(
             $queryParams,
             function ($el) {
