@@ -10,7 +10,8 @@ class ClientTest extends \PHPUnit_Framework_TestCase
      *
      * @return void
      */
-    public function setUp() {
+    public function setUp()
+    {
         parent::setUp();
         $apiKey = 'secret';
         $this->Client = new \MirkoIO\RescueTime\Client($apiKey);
@@ -21,7 +22,8 @@ class ClientTest extends \PHPUnit_Framework_TestCase
      *
      * @return void
      */
-    public function tearDown() {
+    public function tearDown()
+    {
         parent::tearDown();
         unset($this->Client);
     }
@@ -37,7 +39,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
      * @expectedException        Exception
      * @expectedExceptionMessage Perspective must be one of rank, interval or member
      */
-    public function testInvalidPerspectiveParameter()
+    public function testInvalidPerspective()
     {
         $this->Client->request('invalid_perspective_name');
     }
@@ -46,7 +48,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
      * @expectedException        Exception
      * @expectedExceptionMessage Resolution time must be one of month, week, day or hour
      */
-    public function testInvalidResolutionTimeParameter()
+    public function testInvalidResolutionTime()
     {
         $this->Client->request(null, 'invalid_resolution_time');
     }
@@ -55,7 +57,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
      * @expectedException        Exception
      * @expectedExceptionMessage Restrict kind must be one of category, activity, productivity
      */
-    public function testInvalidRestrictKindParameter()
+    public function testInvalidRestrictKind()
     {
         $this->Client->request(null, null, null, null, null, null, 'invalid_restrict_kind');
     }
