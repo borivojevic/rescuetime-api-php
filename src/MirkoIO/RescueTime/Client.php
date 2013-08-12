@@ -13,6 +13,10 @@ class Client
 
     }
 
+    public function setClient($httpClient) {
+        $this->httpClient = $httpClient;
+    }
+
     /**
      * Sends request to RescueTime API and returns \Activity array
      * @return Array
