@@ -1,10 +1,8 @@
 <?php
-
 namespace MirkoIO\RescueTime\Tests;
 
 class ClientTest extends \PHPUnit_Framework_TestCase
 {
-
     /**
      * setUp method
      *
@@ -30,7 +28,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 
     public function testGetByRank()
     {
-        $data = file_get_contents(FAKES_PATH . '/rank.json');
+        $data = file_get_contents(__DIR__ . '/Fakes/rank.json');
 
         $requestParams = array('perspective' => 'rank');
 
@@ -52,7 +50,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 
     public function testGetByInterval()
     {
-        $data = file_get_contents(FAKES_PATH . '/interval.json');
+        $data = file_get_contents(__DIR__ . '/Fakes/interval.json');
 
         $requestParams = array('perspective' => 'interval');
 
@@ -74,7 +72,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 
     public function testGetByMember()
     {
-        $data = file_get_contents(FAKES_PATH . '/member.json');
+        $data = file_get_contents(__DIR__ . '/Fakes/member.json');
 
         $requestParams = array('perspective' => 'member');
 

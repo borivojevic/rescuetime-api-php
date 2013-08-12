@@ -13,7 +13,8 @@ class Client
 
     }
 
-    public function setClient($httpClient) {
+    public function setClient($httpClient)
+    {
         $this->httpClient = $httpClient;
     }
 
