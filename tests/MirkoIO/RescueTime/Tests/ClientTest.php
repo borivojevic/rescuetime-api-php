@@ -30,9 +30,9 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 
     public function testApiRequest()
     {
-        $result = $this->Client->request("rank");
-        $result = $this->Client->request("interval");
-        $result = $this->Client->request("member");
+        $result = $this->Client->getActivities("rank");
+        $result = $this->Client->getActivities("interval");
+        $result = $this->Client->getActivities("member");
     }
 
     /**
@@ -41,7 +41,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
      */
     public function testInvalidPerspective()
     {
-        $this->Client->request('invalid_perspective_name');
+        $this->Client->getActivities('invalid_perspective_name');
     }
 
     /**
@@ -50,7 +50,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
      */
     public function testInvalidResolutionTime()
     {
-        $this->Client->request(null, 'invalid_resolution_time');
+        $this->Client->getActivities(null, 'invalid_resolution_time');
     }
 
     /**
@@ -59,6 +59,6 @@ class ClientTest extends \PHPUnit_Framework_TestCase
      */
     public function testInvalidRestrictKind()
     {
-        $this->Client->request(null, null, null, null, null, null, 'invalid_restrict_kind');
+        $this->Client->getActivities(null, null, null, null, null, null, 'invalid_restrict_kind');
     }
 }

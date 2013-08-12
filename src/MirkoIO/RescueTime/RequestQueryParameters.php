@@ -4,7 +4,6 @@ namespace MirkoIO\RescueTime;
 class RequestQueryParameters
 {
     private $apiKey;
-    private $apiEndpoint;
     private $format;
 
     /**
@@ -141,8 +140,6 @@ class RequestQueryParameters
 
     public function __construct($params)
     {
-        $this->apiEndpoint = 'https://www.rescuetime.com';
-        $this->format = 'json';
         $this->operation = 'select';
         $this->version = 0;
         $this->setPerspective($params['perspective'] ?: 'rank');
@@ -184,7 +181,6 @@ class RequestQueryParameters
     public function setResolutionTime($resolution)
     {
         if ($resolution && !in_array($resolution, array("month", "week", "day", "hour"))) {
-            var_dump($resolution);
             throw new \Exception("Resolution time must be one of month, week, day or hour");
         }
         $this->resolution_time = $resolution;

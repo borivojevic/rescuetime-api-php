@@ -1,23 +1,23 @@
 <?php
 namespace MirkoIO\RescueTime;
 
-use Guzzle\Http\Client as GuzzleClient;
-
 class Client
 {
     private $apiKey;
+    private $httpClient;
 
     public function __construct($apiKey)
     {
         $this->apiKey = $apiKey;
-        $this->guzzleClient = null;
+        $this->httpClient = new HttpClient($apiKey);
+
     }
 
     /**
      * Sends request to RescueTime API and returns \Activity array
      * @return Array
      */
-    public function request(
+    public function getActivities(
         $perspective = null,
         $resolution_time = null,
         $restrict_group = null,
@@ -43,34 +43,8 @@ class Client
                 'restrict_thingy'
             )
         );
-        $requestQueryParameters->apiKey = $this->apiKey;
 
-        $client = $this->guzzleClient ?: new GuzzleClient($requestQueryParameters->apiEndpoint);
-        $request = $client->get(
-            '/anapi/data',
-            array('Accept' => 'application/json'),
-            array('query' => $requestQueryParameters->toArray())
-        );
-
-        $response = $request->send();
-        return $this->handleResponse($response);
-    }
-
-    private function handleResponse($response)
-    {
-        if (!$response || !$response->isSuccessful()) {
-            throw new \Exception("HTTP request failed");
-        }
-
-        if ($response->getContentLength() == 0) {
-            throw new \Exception("HTTP body empty");
-        }
-
-        try {
-            $responseJsonArray = json_decode($response->getBody(), true);
-        } catch (RuntimeException $e) {
-            throw new \Exception("Invalid JSON response: " . $e->getMessage());
-        }
+        $responseJsonArray = $this->httpClient->request($requestQueryParameters);
 
         if (array_key_exists('error', $responseJsonArray)) {
             throw new \Exception("API returned error: " . $responseJsonArray['error']);
