@@ -1,0 +1,131 @@
+{
+    "notes": "data is an array of arrays (rows), column names for rows in row_headers",
+    "row_headers": [
+        "Person",
+        "Time Spent (seconds)",
+        "Activity",
+        "Category",
+        "Productivity"
+    ],
+    "rows": [
+        [
+            "Mirko",
+            10038,
+            "sublime text 2",
+            "Editing & IDEs",
+            2
+        ],
+        [
+            "Mirko",
+            1810,
+            "basecamp.com",
+            "Design & Planning",
+            2
+        ],
+        [
+            "Mirko",
+            1670,
+            "iTerm",
+            "Systems Operations",
+            2
+        ],
+        [
+            "Mirko",
+            1300,
+            "Gmail",
+            "Email",
+            0
+        ],
+        [
+            "Mirko",
+            857,
+            "rescuetime.com",
+            "Intelligence",
+            2
+        ],
+        [
+            "Mirko",
+            512,
+            "kmplayer",
+            "General Entertainment",
+            -2
+        ],
+        [
+            "Mirko",
+            423,
+            "mirkoborivojevic.com",
+            "Uncategorized",
+            0
+        ],
+        [
+            "Mirko",
+            420,
+            "mysqlworkbench",
+            "General Software Development",
+            2
+        ],
+        [
+            "Mirko",
+            419,
+            "Hosted Google Docs",
+            "Writing",
+            2
+        ],
+        [
+            "Mirko",
+            418,
+            "evernote",
+            "Intelligence",
+            2
+        ],
+        [
+            "Mirko",
+            365,
+            "google.com/analytics",
+            "General Software Development",
+            2
+        ],
+        [
+            "Mirko",
+            313,
+            "github.com",
+            "General Software Development",
+            2
+        ],
+        [
+            "Mirko",
+            305,
+            "google.rs",
+            "Search",
+            0
+        ],
+        [
+            "Mirko",
+            291,
+            "teamviewer",
+            "General Utilities",
+            1
+        ],
+        [
+            "Mirko",
+            260,
+            "spotify",
+            "General Entertainment",
+            -2
+        ],
+        [
+            "Mirko",
+            141,
+            "iTunes",
+            "Music",
+            -2
+        ],
+        [
+            "Mirko",
+            94,
+            "Twitter",
+            "General Social Networking",
+            -2
+        ]
+    ]
+}

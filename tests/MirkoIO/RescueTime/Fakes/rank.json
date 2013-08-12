@@ -1,0 +1,133 @@
+{
+    "notes": "data is an array of arrays (rows), column names for rows in row_headers",
+    "row_headers": [
+        "Rank",
+        "Time Spent (seconds)",
+        "Number of People",
+        "Activity",
+        "Category",
+        "Productivity"
+    ],
+    "rows": [
+        [
+            1,
+            10038,
+            1,
+            "sublime text 2",
+            "Editing & IDEs",
+            2
+        ],
+        [
+            2,
+            1810,
+            1,
+            "basecamp.com",
+            "Design & Planning",
+            2
+        ],
+        [
+            3,
+            1300,
+            1,
+            "Gmail",
+            "Email",
+            0
+        ],
+        [
+            4,
+            857,
+            1,
+            "rescuetime.com",
+            "Intelligence",
+            2
+        ],
+        [
+            5,
+            512,
+            1,
+            "kmplayer",
+            "General Entertainment",
+            -2
+        ],
+        [
+            6,
+            423,
+            1,
+            "mirkoborivojevic.com",
+            "Uncategorized",
+            0
+        ],
+        [
+            7,
+            420,
+            1,
+            "mysqlworkbench",
+            "General Software Development",
+            2
+        ],
+        [
+            8,
+            419,
+            1,
+            "Hosted Google Docs",
+            "Writing",
+            2
+        ],
+        [
+            9,
+            418,
+            1,
+            "evernote",
+            "Intelligence",
+            2
+        ],
+        [
+            10,
+            365,
+            1,
+            "google.com/analytics",
+            "General Software Development",
+            2
+        ],
+        [
+            11,
+            313,
+            1,
+            "github.com",
+            "General Software Development",
+            2
+        ],
+        [
+            12,
+            305,
+            1,
+            "google.rs",
+            "Search",
+            0
+        ],
+        [
+            13,
+            291,
+            1,
+            "teamviewer",
+            "General Utilities",
+            1
+        ],
+        [
+            14,
+            260,
+            1,
+            "spotify",
+            "General Entertainment",
+            -2
+        ],
+        [
+            15,
+            141,
+            1,
+            "iTunes",
+            "Music",
+            -2
+        ]
+    ]
+}

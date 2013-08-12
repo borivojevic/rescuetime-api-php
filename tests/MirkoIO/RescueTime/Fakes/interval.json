@@ -1,0 +1,125 @@
+{
+    "notes": "data is an array of arrays (rows), column names for rows in row_headers",
+    "row_headers": [
+        "Date",
+        "Time Spent (seconds)",
+        "Number of People",
+        "Activity",
+        "Category",
+        "Productivity"
+    ],
+    "rows": [
+        [
+            "2013-08-11T18:00:00",
+            91,
+            1,
+            "sublime text 2",
+            "Editing & IDEs",
+            2
+        ],
+        [
+            "2013-08-11T18:00:00",
+            69,
+            1,
+            "iTerm",
+            "Systems Operations",
+            2
+        ],
+        [
+            "2013-08-11T18:00:00",
+            20,
+            1,
+            "rescuetime.com",
+            "Intelligence",
+            2
+        ],
+        [
+            "2013-08-11T18:00:00",
+            12,
+            1,
+            "RescueTime",
+            "Intelligence",
+            2
+        ],
+        [
+            "2013-08-11T18:00:00",
+            7,
+            1,
+            "evernote",
+            "Intelligence",
+            2
+        ],
+        [
+            "2013-08-11T19:00:00",
+            220,
+            1,
+            "php.net",
+            "Engineering & Technology",
+            1
+        ],
+        [
+            "2013-08-11T19:00:00",
+            191,
+            1,
+            "spotify",
+            "General Entertainment",
+            -2
+        ],
+        [
+            "2013-08-11T19:00:00",
+            32,
+            1,
+            "mirkoborivojevic.com",
+            "Uncategorized",
+            0
+        ],
+        [
+            "2013-08-11T19:00:00",
+            10,
+            1,
+            "Gmail",
+            "Email",
+            0
+        ],
+        [
+            "2013-08-11T19:00:00",
+            6,
+            1,
+            "google.rs",
+            "Search",
+            0
+        ],
+        [
+            "2013-08-11T20:00:00",
+            175,
+            1,
+            "teamviewer",
+            "General Utilities",
+            1
+        ],
+        [
+            "2013-08-11T20:00:00",
+            60,
+            1,
+            "github.com",
+            "General Software Development",
+            2
+        ],
+        [
+            "2013-08-11T20:00:00",
+            23,
+            1,
+            "Steam",
+            "Games",
+            -2
+        ],
+        [
+            "2013-08-12T21:00:00",
+            3,
+            1,
+            "gist.github.com",
+            "General Software Development",
+            2
+        ]
+    ]
+}
