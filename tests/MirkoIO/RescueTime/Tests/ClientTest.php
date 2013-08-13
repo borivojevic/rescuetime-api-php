@@ -40,7 +40,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
             ->method('request')
             ->will($this->returnValue(json_decode($data, true)));
 
-        $this->Client->setClient($httpClient);
+        $this->Client->httpClient = $httpClient;
 
         $activities = $this->Client->getActivities("rank");
 
@@ -62,7 +62,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
             ->method('request')
             ->will($this->returnValue(json_decode($data, true)));
 
-        $this->Client->setClient($httpClient);
+        $this->Client->httpClient = $httpClient;
 
         $activities = $this->Client->getActivities("interval");
 
@@ -84,7 +84,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
             ->method('request')
             ->will($this->returnValue(json_decode($data, true)));
 
-        $this->Client->setClient($httpClient);
+        $this->Client->httpClient = $httpClient;
 
         $activities = $this->Client->getActivities("member");
 

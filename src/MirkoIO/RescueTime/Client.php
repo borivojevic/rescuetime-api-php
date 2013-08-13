@@ -4,18 +4,13 @@ namespace MirkoIO\RescueTime;
 class Client
 {
     private $apiKey;
-    private $httpClient;
+    public $httpClient;
 
     public function __construct($apiKey)
     {
         $this->apiKey = $apiKey;
         $this->httpClient = new HttpClient($apiKey);
 
-    }
-
-    public function setClient($httpClient)
-    {
-        $this->httpClient = $httpClient;
     }
 
     /**
