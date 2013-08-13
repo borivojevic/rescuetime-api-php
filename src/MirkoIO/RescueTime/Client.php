@@ -14,8 +14,20 @@ class Client
     }
 
     /**
-     * Sends request to RescueTime API and returns \Activity array
-     * @return Array
+     * Gets list of activities from
+     * RescueTime API for selected criteria
+     *
+     * @param  String   $perspective      @see RequestQueryParameters::perspective
+     * @param  String   $resolution_time  @see RequestQueryParameters::resolution_time
+     * @param  String   $restrict_group   @see RequestQueryParameters::restrict_group
+     * @param  String   $restrict_user    @see RequestQueryParameters::restrict_user
+     * @param  DateTime $restrict_begin   @see RequestQueryParameters::restrict_begin
+     * @param  DateTime $restrict_end     @see RequestQueryParameters::restrict_end
+     * @param  String   $restrict_kind    @see RequestQueryParameters::restrict_kind
+     * @param  String   $restrict_project @see RequestQueryParameters::restrict_project
+     * @param  String   $restrict_thing   @see RequestQueryParameters::restrict_thing
+     * @param  String   $restrict_thingy  @see RequestQueryParameters::restrict_thingy
+     * @return Array    Array of Activity objects
      */
     public function getActivities(
         $perspective = null,
