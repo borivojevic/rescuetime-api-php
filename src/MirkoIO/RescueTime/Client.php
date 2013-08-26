@@ -1,33 +1,72 @@
 <?php
 namespace MirkoIO\RescueTime;
 
+/**
+ * This class provides a client API for RescueTime Analytic Data API
+ *
+ * Initial release of RescueTime API is targeted at bringing developers the prepared and
+ * pre-organized data structures already familiar through the reporting views of www.rescuetime.com.
+ *
+ * At this point API provides single endpoint to fetch detailed and complicated data.
+ * The data is read-only through the webservice.
+ *
+ * Keep in mind this is a draft interface, and may change in the future.
+ * RescueTime do intend to version the interfaces though, so it is likely forward compatible.
+ *
+ * Usage:
+ * <code>
+ * $Client = new \MirkoIO\RescueTime\Client($apiKey);
+ * $activities = $Client->getActivities("rank");
+ * </code>
+ *
+ * @link https://www.rescuetime.com/analytic_api_setup/doc
+ */
 class Client
 {
+
+    /**
+     * RescueTime API token
+     *
+     * @var string
+     * @see https://www.rescuetime.com/anapi/setup
+     */
     private $apiKey;
+
+    /**
+     * Default HttpClient
+     *
+     * @var \MirkoIO\RescueTime\HttpClient
+     */
     public $httpClient;
 
+    /**
+     * Constructs RescueTime client
+     *
+     * @param string $apiKey RescueTime API key generated in the Embed and Data API -> Setup Data API
+     */
     public function __construct($apiKey)
     {
         $this->apiKey = $apiKey;
         $this->httpClient = new HttpClient($apiKey);
-
     }
 
     /**
-     * Gets list of activities from
-     * RescueTime API for selected criteria
+     * Returns list of RescueTime activities for selected search criteria
      *
-     * @param  String   $perspective      @see RequestQueryParameters::perspective
-     * @param  String   $resolution_time  @see RequestQueryParameters::resolution_time
-     * @param  String   $restrict_group   @see RequestQueryParameters::restrict_group
-     * @param  String   $restrict_user    @see RequestQueryParameters::restrict_user
-     * @param  DateTime $restrict_begin   @see RequestQueryParameters::restrict_begin
-     * @param  DateTime $restrict_end     @see RequestQueryParameters::restrict_end
-     * @param  String   $restrict_kind    @see RequestQueryParameters::restrict_kind
-     * @param  String   $restrict_project @see RequestQueryParameters::restrict_project
-     * @param  String   $restrict_thing   @see RequestQueryParameters::restrict_thing
-     * @param  String   $restrict_thingy  @see RequestQueryParameters::restrict_thingy
-     * @return Array    Array of Activity objects
+     * @param  string    $perspective      One of "rank", "interval", "member"
+     * @param  string    $resolution_time  One of "month", "week", "day", "hour"
+     * @param  string    $restrict_group   One group name
+     * @param  string    $restrict_user    One user name or user email
+     * @param  \DateTime $restrict_begin   Sets the start day for data batch
+     * @param  \DateTime $restrict_end     Sets the end day for data batch
+     * @param  string    $restrict_kind    One of "category", "activity", "productivity"
+     * @param  string    $restrict_project Name of project
+     * @param  string    $restrict_thing   Name of category, activity, or overview
+     * @param  string    $restrict_thingy  Name of specific "document" or "activity"
+     *
+     * @return array<\MirkoIO\RescueTime\Activity> All activities, or false if none found
+     *
+     * @throws \Exception If API returns error
      */
     public function getActivities(
         $perspective = null,
@@ -68,6 +107,6 @@ class Client
             $result[]  = new Activity($rowHeaders, $columns);
         }
 
-        return $result;
+        return $result ?: false;
     }
 }

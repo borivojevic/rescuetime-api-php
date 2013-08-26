@@ -71,8 +71,9 @@ class RequestQueryParameters
     private $restrict_user;
 
     /**
-     * Sets the start day for data batch,
-     * inclusive (always at time 00:00, start hour/minute not supported)
+     * Sets the start day for data batch
+     *
+     * Inclusive (always at time 00:00, start hour/minute not supported)
      * Format ISO 8601 "YYYY-MM-DD"
      *
      * @var DateTime
@@ -80,8 +81,9 @@ class RequestQueryParameters
     private $restrict_begin;
 
     /**
-     * Sets the end day for data batch,
-     * uninclusive (always at time 00:00, end hour/minute not supported)
+     * Sets the end day for data batch
+     *
+     * Uninclusive (always at time 00:00, end hour/minute not supported)
      * So, to set 2009-07-31 data as last in your batch, set end date of 2009-08-01
      * Format ISO 8601 "YYYY-MM-DD"
      *
@@ -90,7 +92,8 @@ class RequestQueryParameters
     private $restrict_end;
 
     /**
-     * One of "category", "activity", or "productivity".
+     * One of "category", "activity", "productivity"
+     *
      * "efficiency" is option when perspective is "interval" or "member"
      *
      * Allows you to preprocess data through different statistical engines.
