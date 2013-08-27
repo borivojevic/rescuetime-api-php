@@ -4,12 +4,11 @@ namespace MirkoIO\RescueTime;
 /**
  * This class provides a client API for RescueTime Analytic Data API
  *
+ * At this point RescueTime API provides single endpoint to fetch detailed and complicated data.
+ * The data is read-only through the API.
+ *
  * Initial release of RescueTime API is targeted at bringing developers the prepared and
  * pre-organized data structures already familiar through the reporting views of www.rescuetime.com.
- *
- * At this point API provides single endpoint to fetch detailed and complicated data.
- * The data is read-only through the webservice.
- *
  * Keep in mind this is a draft interface, and may change in the future.
  * RescueTime do intend to version the interfaces though, so it is likely forward compatible.
  *
@@ -28,7 +27,6 @@ class Client
      * RescueTime API token
      *
      * @var string
-     * @see https://www.rescuetime.com/anapi/setup
      */
     private $apiKey;
 
@@ -43,6 +41,7 @@ class Client
      * Constructs RescueTime client
      *
      * @param string $apiKey RescueTime API key generated in the Embed and Data API -> Setup Data API
+     * @link https://www.rescuetime.com/anapi/setup
      */
     public function __construct($apiKey)
     {
