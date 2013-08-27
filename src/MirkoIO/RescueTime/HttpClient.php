@@ -3,12 +3,38 @@ namespace MirkoIO\RescueTime;
 
 use Guzzle\Http\Client as GuzzleClient;
 
+/**
+ * This class handles HTTP communication with RescueTime API
+ */
 class HttpClient
 {
+
+    /**
+     * RescueTime API token
+     *
+     * @var string
+     */
     private $apiKey;
+
+    /**
+     * URL to rescue time api
+     *
+     * @var string
+     */
     private $apiEndpoint;
+
+    /**
+     * API request format - defaulted to json
+     *
+     * @var string
+     */
     private $format;
 
+    /**
+     * Constructs HttpClient
+     *
+     * @param string $apiKey RescueTime API token
+     */
     public function __construct($apiKey)
     {
         $this->apiKey = $apiKey;
@@ -18,8 +44,9 @@ class HttpClient
     }
 
     /**
-     * Sends request to RescueTime API and returns array
-     * @return Array
+     * Sends request to RescueTime API
+     *
+     * @return array Decoded json returned by server
      */
     public function request(RequestQueryParameters $params)
     {
@@ -38,6 +65,12 @@ class HttpClient
         return $this->handleResponse($response);
     }
 
+    /**
+     * Parses RescueTime API response and handles HTTP/API errors
+     * @param  String $response Raw API response
+     * @return array            Decoded json returned by server
+     * @throws \Exception If API server can not be contacted or returns an error
+     */
     private function handleResponse($response)
     {
         if (!$response || !$response->isSuccessful()) {
