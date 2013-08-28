@@ -60,7 +60,7 @@ The library uses [Semantic Versioning][]
 
 The library is licensed under the MIT license.
 
-[RescueTime](https://www.rescuetime.com)
-[Composer](http://getcomposer.org/)
-[Semantic Versioning](http://semver.org/)
-[Contributing guidelines][https://github.com/borivojevic/rescuetime-api-php/blob/master/CONTRIBUTING.md]
+[RescueTime]: https://www.rescuetime.com
+[Composer]: http://getcomposer.org/
+[Semantic Versioning]: http://semver.org/
+[Contributing guidelines]: https://github.com/borivojevic/rescuetime-api-php/blob/master/CONTRIBUTING.md
