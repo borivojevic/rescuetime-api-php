@@ -1,7 +1,3 @@
-# Basic Workflow
-
-Fork >> Setup Development >> Edit >> Send GitHub pull request
-
 ### Getting Started (Vagrant Setup)
 
 1. Install Git
@@ -40,10 +36,32 @@ The very first time you'll have to install application dependencies:
 composer install
 ```
 
-### Testing
+Basic Workflow: Run vagrant machine >> Update repository >> Edit >> Send GitHub pull request
+1. Update repository
+ 1. `cd /home/vagrant`
+ 1. `git checkout master`
+ 1. `git pull`
+1. Make changes to RescueTime API
+ 1. `cd /home/vagrant`
+ 1. (Make changes)
+ 1. `git commit ...`
+ 1. (Make sure all tests pass. See [testing](#testing))
+ 1. `git push`
+1. Submitting pull request to master repository
+ 1. [Using pull requests](https://help.github.com/articles/using-pull-requests)
+ 1. [Creating a pull request](https://help.github.com/articles/creating-a-pull-request)
+
+### <a id="testing"></a>Testing
 
 To run unit test suite type:
 
 ```
 phpunit
+```
+
+To run coding standard tests type:
+
+```
+phpcs --standard=PSR2 src/
+phpcs --standard=PSR2 tests/
 ```
