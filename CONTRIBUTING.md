@@ -37,6 +37,7 @@ composer install
 ```
 
 Basic Workflow: Run vagrant machine >> Update repository >> Edit >> Send GitHub pull request
+
 1. Update repository
  1. `cd /home/vagrant`
  1. `git checkout master`
@@ -47,7 +48,7 @@ Basic Workflow: Run vagrant machine >> Update repository >> Edit >> Send GitHub 
  1. `git commit ...`
  1. (Make sure all tests pass. See [testing](#testing))
  1. `git push`
-1. Submitting pull request to master repository
+1. Submit pull request to master repository
  1. [Using pull requests](https://help.github.com/articles/using-pull-requests)
  1. [Creating a pull request](https://help.github.com/articles/creating-a-pull-request)
 
