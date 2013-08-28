@@ -1,9 +1,25 @@
 <?php
 namespace MirkoIO\RescueTime;
 
+/**
+ * This class provides convenience wrapper around RescueTime Data API query parameters
+ */
 class RequestQueryParameters
 {
+
+    /**
+     * RescueTime API token
+     *
+     * @var string
+     */
     private $apiKey;
+
+    /**
+     * API request format (defaulted to json)
+     *
+     * API provides data in CSV or JSON format
+     *
+     */
     private $format;
 
     /**
@@ -44,7 +60,7 @@ class RequestQueryParameters
      * Default is "hour". In an interval report, the X axis unit.
      * In other words, data is summarizd into chunks of this size.
      *
-     * @var String
+     * @var string
      */
     private $resolution_time;
 
@@ -56,7 +72,7 @@ class RequestQueryParameters
      * Avoid re-using the same name for multiple groups when creating them.
      * Currently we do not prevent this. First match will be returned.
      *
-     * @var String
+     * @var string
      */
     private $restrict_group;
 
@@ -66,7 +82,7 @@ class RequestQueryParameters
      * Provide the full (display) name of the user or email address.
      * Service will match that with your account to find user.
      *
-     * @var String
+     * @var string
      */
     private $restrict_user;
 
@@ -76,7 +92,7 @@ class RequestQueryParameters
      * Inclusive (always at time 00:00, start hour/minute not supported)
      * Format ISO 8601 "YYYY-MM-DD"
      *
-     * @var DateTime
+     * @var \DateTime
      */
     private $restrict_begin;
 
@@ -87,7 +103,7 @@ class RequestQueryParameters
      * So, to set 2009-07-31 data as last in your batch, set end date of 2009-08-01
      * Format ISO 8601 "YYYY-MM-DD"
      *
-     * @var DateTime
+     * @var \DateTime
      */
     private $restrict_end;
 
@@ -104,7 +120,7 @@ class RequestQueryParameters
      *  3. productivity: productivity calculation
      *  4. efficiency: efficiency calculation (not applicable in "rank" perspective)
      *
-     * @var String
+     * @var string
      */
     private $restrict_kind;
 
@@ -115,7 +131,7 @@ class RequestQueryParameters
      * If you create multiple projects with identical names, the first match returns.
      * The returned data will be limited to time active in only that project.
      *
-     * @var String
+     * @var string
      */
     private $restrict_project;
 
@@ -128,7 +144,7 @@ class RequestQueryParameters
      * The easiest way to see what name you should be using is to retrieve
      * a list that contains the name you want, and inspect it for the exact names.
      *
-     * @var String
+     * @var string
      */
     private $restrict_thing;
 
@@ -137,10 +153,15 @@ class RequestQueryParameters
      * if supported. For example, the document name active when using Microsoft Word.
      * Available for most major applications and web sites.
      *
-     * @var String
+     * @var string
      */
     private $restrict_thingy;
 
+    /**
+     * Constructs RequestQueryParameters class
+     *
+     * @param array $params
+     */
     public function __construct($params)
     {
         $this->operation = 'select';
@@ -157,6 +178,14 @@ class RequestQueryParameters
         $this->restrict_thingy = $params['restrict_thingy'] ?: null;
     }
 
+    /**
+     * Class properties accessor
+     *
+     * Utilized for reading data from inaccessible properties
+     *
+     * @param  string $attribute Property name
+     * @return mixed Property value
+     */
     public function __get($attribute)
     {
         if (property_exists($this, $attribute)) {
@@ -173,6 +202,12 @@ class RequestQueryParameters
         return null;
     }
 
+    /**
+     * Sets perspective property
+     *
+     * @param string $perspective
+     * @throws \Exception If perspective not in "rank", "interaval", "member"
+     */
     public function setPerspective($perspective)
     {
         if ($perspective && !in_array($perspective, array("rank", "interval", "member"))) {
@@ -181,6 +216,12 @@ class RequestQueryParameters
         $this->perspective = $perspective;
     }
 
+    /**
+     * Sets resolution property
+     *
+     * @param string $resolution
+     * @throws \Exception If resolution not in "month", "week", "day", "hour"
+     */
     public function setResolutionTime($resolution)
     {
         if ($resolution && !in_array($resolution, array("month", "week", "day", "hour"))) {
@@ -189,6 +230,12 @@ class RequestQueryParameters
         $this->resolution_time = $resolution;
     }
 
+    /**
+     * Sets resetrict_kind property
+     *
+     * @param string $kind
+     * @throws  \Exception If property not in "category", "activity", "productivity"
+     */
     public function setRestrictKind($kind)
     {
         if ($kind && !in_array($kind, array("category", "activity", "productivity"))) {
@@ -197,6 +244,14 @@ class RequestQueryParameters
         $this->restrict_kind = $kind;
     }
 
+    /**
+     * Class properties mutator
+     *
+     * Run when writing data to inaccessible properties
+     *
+     * @param string $attribute Property name
+     * @param string $value     Property value
+     */
     public function __set($attribute, $value)
     {
         if ($attribute == "perspective") {
@@ -222,6 +277,11 @@ class RequestQueryParameters
         );
     }
 
+    /**
+     * Serializes query parameters array to API endpoint specific format
+     *
+     * @return array
+     */
     public function toArray()
     {
         $queryParams = array(

@@ -66,6 +66,7 @@ class Client
      * @return array<\MirkoIO\RescueTime\Activity> All activities, or false if none found
      *
      * @throws \Exception If API returns error
+     * @see  \MirkoIO\RescueTime\RequestQueryParameters
      */
     public function getActivities(
         $perspective = null,
