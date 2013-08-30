@@ -51,11 +51,13 @@ TODO ...
 
 ### Contributing ###
 
-Patches and pull requests are encouraged. For more techincal info see [Contributing guidelines][]
+Patches and pull requests are welcome. Take a look at [Contributing guidelines][] for further info.
 
+<!--
 ### Versioning ###
 
 The library uses [Semantic Versioning][]
+-->
 
 ### Copyright and License ###
 
