@@ -15,7 +15,7 @@ Recommend way to install this package with [Composer][]. Add borivojevic/rescuet
 ``` json
 {
     "require": {
-        "borivojevic/rescuetime-api-php": "1.*"
+        "borivojevic/rescuetime": "dev-master"
     }
 }
 ```
