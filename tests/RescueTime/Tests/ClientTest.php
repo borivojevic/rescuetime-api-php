@@ -1,5 +1,5 @@
 <?php
-namespace MirkoIO\RescueTime\Tests;
+namespace RescueTime\Tests;
 
 class ClientTest extends \PHPUnit_Framework_TestCase
 {
@@ -12,7 +12,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     {
         parent::setUp();
         $apiKey = 'secret';
-        $this->Client = new \MirkoIO\RescueTime\Client($apiKey);
+        $this->Client = new \RescueTime\Client($apiKey);
     }
 
     /**
@@ -32,7 +32,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 
         $requestParams = array('perspective' => 'rank');
 
-        $httpClient = $this->getMockBuilder('\MirkoIO\RescueTime\HttpClient')
+        $httpClient = $this->getMockBuilder('\RescueTime\HttpClient')
             ->setConstructorArgs(array($requestParams))
             ->setMethods(array('request'))
             ->getMock();
@@ -54,7 +54,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 
         $requestParams = array('perspective' => 'interval');
 
-        $httpClient = $this->getMockBuilder('\MirkoIO\RescueTime\HttpClient')
+        $httpClient = $this->getMockBuilder('\RescueTime\HttpClient')
             ->setConstructorArgs(array($requestParams))
             ->setMethods(array('request'))
             ->getMock();
@@ -76,7 +76,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 
         $requestParams = array('perspective' => 'member');
 
-        $httpClient = $this->getMockBuilder('\MirkoIO\RescueTime\HttpClient')
+        $httpClient = $this->getMockBuilder('\RescueTime\HttpClient')
             ->setConstructorArgs(array($requestParams))
             ->setMethods(array('request'))
             ->getMock();

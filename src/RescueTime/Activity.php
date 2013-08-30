@@ -1,5 +1,5 @@
 <?php
-namespace MirkoIO\RescueTime;
+namespace RescueTime;
 
 /**
  * This class provides a model for activity data returned by RescueTime Analytic Data API

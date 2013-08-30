@@ -1,5 +1,5 @@
 {
-    "name": "mirkoio/rescuetime",
+    "name": "borivojevic/rescuetime",
     "type": "library",
     "description": "PHP wrapper library for RescueTime API",
     "keywords": ["rescuetime", "api"],
@@ -21,7 +21,7 @@
     },
     "autoload": {
         "psr-0": {
-            "MirkoIO": "src"
+            "RescueTime": "src"
         }
     }
 }

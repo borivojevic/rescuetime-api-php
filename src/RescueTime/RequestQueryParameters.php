@@ -1,5 +1,5 @@
 <?php
-namespace MirkoIO\RescueTime;
+namespace RescueTime;
 
 /**
  * This class provides convenience wrapper around RescueTime Data API query parameters

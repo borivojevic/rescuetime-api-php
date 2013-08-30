@@ -1,5 +1,5 @@
 <?php
-namespace MirkoIO\RescueTime;
+namespace RescueTime;
 
 use Guzzle\Http\Client as GuzzleClient;
 

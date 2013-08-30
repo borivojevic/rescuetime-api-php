@@ -40,7 +40,7 @@ require 'vendor/autoload.php';
 ### Usage ###
 
 ``` php
-$Client = new \MirkoIO\RescueTime\Client($apiKey);
+$Client = new \RescueTime\Client($apiKey);
 $activities = $Client->getActivities("rank");
 ```
 

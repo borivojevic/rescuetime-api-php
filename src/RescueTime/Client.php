@@ -1,5 +1,5 @@
 <?php
-namespace MirkoIO\RescueTime;
+namespace RescueTime;
 
 /**
  * This class provides a client API for RescueTime Analytic Data API
@@ -14,7 +14,7 @@ namespace MirkoIO\RescueTime;
  *
  * Usage:
  * <code>
- * $Client = new \MirkoIO\RescueTime\Client($apiKey);
+ * $Client = new \RescueTime\Client($apiKey);
  * $activities = $Client->getActivities("rank");
  * </code>
  *
@@ -33,7 +33,7 @@ class Client
     /**
      * Default HttpClient
      *
-     * @var \MirkoIO\RescueTime\HttpClient
+     * @var \RescueTime\HttpClient
      */
     public $httpClient;
 
@@ -63,10 +63,10 @@ class Client
      * @param  string    $restrict_thing   Name of category, activity, or overview
      * @param  string    $restrict_thingy  Name of specific "document" or "activity"
      *
-     * @return array<\MirkoIO\RescueTime\Activity> All activities, or false if none found
+     * @return array<\RescueTime\Activity> All activities, or false if none found
      *
      * @throws \Exception If API returns error
-     * @see  \MirkoIO\RescueTime\RequestQueryParameters
+     * @see  \RescueTime\RequestQueryParameters
      */
     public function getActivities(
         $perspective = null,

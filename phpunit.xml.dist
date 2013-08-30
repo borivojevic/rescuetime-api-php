@@ -8,8 +8,8 @@
          bootstrap="tests/bootstrap.php">
 
 	<testsuites>
-		<testsuite name="MirkoIO/RescueTime Test Suite">
-			<directory>./tests/MirkoIO/RescueTime/</directory>
+		<testsuite name="RescueTime Test Suite">
+			<directory>./tests/RescueTime/</directory>
 		</testsuite>
 	</testsuites>
 
