@@ -1,4 +1,5 @@
-## rescuetime-api-php ##
+rescuetime-api-php [![Build Status](https://travis-ci.org/borivojevic/rescuetime-api-php.png?branch=master)](https://travis-ci.org/borivojevic/rescuetime-api-php)
+========
 
 PHP wrapper library for [RescueTime][] API
 
@@ -14,7 +15,7 @@ Recommend way to install this package with [Composer][]. Add borivojevic/rescuet
 ``` json
 {
     "require": {
-        "borivojevic/rescuetime": "dev-master"
+        "borivojevic/rescuetime-api-php": "1.*"
     }
 }
 ```
