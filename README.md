@@ -15,7 +15,7 @@ Recommend way to install this package with [Composer][]. Add borivojevic/rescuet
 ``` json
 {
     "require": {
-        "borivojevic/rescuetime": "dev-master"
+        "borivojevic/rescuetime": "1.*"
     }
 }
 ```
@@ -53,11 +53,9 @@ TODO ...
 
 Patches and pull requests are welcome. Take a look at [Contributing guidelines][] for further info.
 
-<!--
 ### Versioning ###
 
 The library uses [Semantic Versioning][]
--->
 
 ### Copyright and License ###
 

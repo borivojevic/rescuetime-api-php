@@ -1,4 +1,13 @@
 <?php
+/**
+ * rescuetime-api-php
+ *
+ * Copyright (c) Mirko Borivojevic (http://mirkoborivojevic.com)
+ *
+ * Licensed under The MIT License
+ * For full copyright and license information, please see the LICENSE file
+ */
+
 namespace RescueTime;
 
 use Guzzle\Http\Client as GuzzleClient;
