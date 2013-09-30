@@ -1,5 +1,5 @@
 {
-    "name": "borivojevic/rescuetime-api-php",
+    "name": "borivojevic/rescuetime",
     "type": "library",
     "description": "PHP wrapper library for RescueTime API",
     "keywords": ["rescuetime", "api"],
