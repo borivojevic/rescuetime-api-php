@@ -106,6 +106,8 @@ $this->Client->getActivities(
 
 You can find the meaning for each of query parameters in official [HTTP Query Interface documentation][]
 
+For a working example of an app build on top of rescuetime-api-php library take a look at [borivojevic/rescuetime-statusboard][].
+
 ### Contributing ###
 
 Patches and pull requests are welcome. Take a look at [Contributing guidelines][] for further info.
@@ -122,5 +124,6 @@ The library is licensed under the MIT license.
 [Composer]: http://getcomposer.org/
 [API Key Management]: https://www.rescuetime.com/anapi/manage
 [HTTP Query Interface documentation]: https://www.rescuetime.com/anapi/setup/documentation#http
+[borivojevic/rescuetime-statusboard]: https://github.com/borivojevic/rescuetime-statusboard
 [Semantic Versioning]: http://semver.org/
 [Contributing guidelines]: https://github.com/borivojevic/rescuetime-api-php/blob/master/CONTRIBUTING.md
