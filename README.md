@@ -87,7 +87,7 @@ $activities = $this->Client->getActivities(
 );
 ```
 
-You can build more complex queries and filter down data by providing other query parameters.
+You can build more complex queries and filter down the data by providing other query parameters:
 
 ``` php
 $this->Client->getActivities(
@@ -104,7 +104,7 @@ $this->Client->getActivities(
 );
 ```
 
-You can find the meaning for each of query parameters in official [HTTP Query Interface documentation][]
+Each query parameter is explained in more details in official [HTTP Query Interface documentation][]
 
 For a working example of an app build on top of rescuetime-api-php library take a look at [borivojevic/rescuetime-statusboard][].
 
