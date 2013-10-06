@@ -40,14 +40,71 @@ require 'vendor/autoload.php';
 
 ### Usage ###
 
+The main entry point of the library is the `RescueTime\Client` class. API methods require to be signed with valid `api_key` parameter which you have to provide as a first argument of the constructor. You can obtain RescueTime API key on [API Key Management][] console page.
+
 ``` php
+<?php
 $Client = new \RescueTime\Client($apiKey);
+
+// Basic example
 $activities = $Client->getActivities("rank");
+
+foreach ($activities as $activity) {
+    echo $activity->getActivityName();
+    echo $activity->getProductivity();
+}
+
+// Fetch activities for past week
+$activities = $this->Client->getActivities(
+    "interval",
+    "day",
+    null,
+    null,
+    new \DateTime("-6 day"),
+    new \DateTime("today")
+);
+
+// Fetch productivity data grouped by activity
+$activities = $this->Client->getActivities(
+    "interval",
+    "day",
+    null,
+    null,
+    new \DateTime("-6 day"),
+    new \DateTime("today"),
+    "activity"
+);
+
+// Fetch productivity data grouped by category
+$activities = $this->Client->getActivities(
+    "interval",
+    "day",
+    null,
+    null,
+    new \DateTime("-6 day"),
+    new \DateTime("today"),
+    "category"
+);
 ```
 
-### What data is returned? ###
+You can build more complex queries and filter down data by providing other query parameters.
 
-TODO ...
+``` php
+$this->Client->getActivities(
+    <perspective>,
+    <resolution_time>,
+    <restrict_group>,
+    <restrict_user>,
+    <restrict_begin>,
+    <restrict_end>,
+    <restrict_kind>,
+    <restrict_project>,
+    <restrict_thing>,
+    <restrict_thingy>
+);
+```
+
+You can find the meaning for each of query parameters in official [HTTP Query Interface documentation][]
 
 ### Contributing ###
 
@@ -63,5 +120,7 @@ The library is licensed under the MIT license.
 
 [RescueTime]: https://www.rescuetime.com
 [Composer]: http://getcomposer.org/
+[API Key Management]: https://www.rescuetime.com/anapi/manage
+[HTTP Query Interface documentation]: https://www.rescuetime.com/anapi/setup/documentation#http
 [Semantic Versioning]: http://semver.org/
 [Contributing guidelines]: https://github.com/borivojevic/rescuetime-api-php/blob/master/CONTRIBUTING.md
