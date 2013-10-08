@@ -86,7 +86,7 @@ class HttpClient
             throw new \Exception("HTTP request failed");
         }
 
-        if ($response->getContentLength() == 0) {
+        if ($response->getInfo("size_download") == 0) {
             throw new \Exception("HTTP body empty");
         }
 
