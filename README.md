@@ -1,5 +1,7 @@
-[![Latest Stable Version](https://poser.pugx.org/borivojevic/rescuetime/v/stable.png)](https://packagist.org/packages/borivojevic/rescuetime)
 [![Build Status](https://travis-ci.org/borivojevic/rescuetime-api-php.png?branch=master)](https://travis-ci.org/borivojevic/rescuetime-api-php)
+[![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/borivojevic/rescuetime-api-php/badges/quality-score.png?s=688bb689ba8d980c06526783e139e8efc13528c5)](https://scrutinizer-ci.com/g/borivojevic/rescuetime-api-php/)
+[![Code Coverage](https://scrutinizer-ci.com/g/borivojevic/rescuetime-api-php/badges/coverage.png?s=0e6ffb9bfbbf1e31aa7fd2ff8d19657eda881129)](https://scrutinizer-ci.com/g/borivojevic/rescuetime-api-php/)
+[![Latest Stable Version](https://poser.pugx.org/borivojevic/rescuetime/v/stable.png)](https://packagist.org/packages/borivojevic/rescuetime)
 
 rescuetime-api-php
 ========
