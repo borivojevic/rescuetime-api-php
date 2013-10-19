@@ -1,4 +1,7 @@
-rescuetime-api-php [![Build Status](https://travis-ci.org/borivojevic/rescuetime-api-php.png?branch=master)](https://travis-ci.org/borivojevic/rescuetime-api-php)
+[![Latest Stable Version](https://poser.pugx.org/borivojevic/rescuetime/v/stable.png)](https://packagist.org/packages/borivojevic/rescuetime)
+[![Build Status](https://travis-ci.org/borivojevic/rescuetime-api-php.png?branch=master)](https://travis-ci.org/borivojevic/rescuetime-api-php)
+
+rescuetime-api-php
 ========
 
 PHP wrapper library for [RescueTime][] API
