@@ -65,6 +65,13 @@ class Activity
      * @var string
      */
     protected $activityCategory;
+    
+    /**
+     * RescueTime document
+     * 
+     * @var string
+     */
+    protected $document;
 
     /**
      * RecueTime productivity grade
@@ -104,6 +111,9 @@ class Activity
                 case 'Category':
                     $properties[$key] = 'activityCategory';
                     break;
+                case 'Document':
+                    $properties[$key] = 'document';
+                    break;
                 case 'Productivity':
                     $properties[$key] = 'productivityCode';
                     break;
@@ -117,6 +127,7 @@ class Activity
         $this->numberOfPeople = null;
         $this->activityName = null;
         $this->activityCategory = null;
+        $this->document = null;
         $this->productivityCode = null;
 
         foreach ($columns as $key => $value) {
@@ -204,6 +215,16 @@ class Activity
         return $this->activityCategory;
     }
 
+    /**
+     * Returns associated RescueTime document
+     *
+     * @return string
+     */
+    public function getDocument()
+    {
+        return $this->document;
+    }
+    
     /**
      * Return RescueTime activiy productivity grade
      *
