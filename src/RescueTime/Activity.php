@@ -68,7 +68,7 @@ class Activity
     
     /**
      * RescueTime document
-     * 
+     *
      * @var string
      */
     protected $document;

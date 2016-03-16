@@ -152,28 +152,28 @@ class RequestQueryParameters
 
     /**
      * List of permitted perspectives (used in @setPerspective)
-     * 
+     *
      * @var array
      */
     private $availablePerspectives = array("rank", "interval", "member");
 
     /**
      * List of permitted resolution times (used in @setResolutionTimes)
-     * 
+     *
      * @var array
      */
     private $availableResolutionTimes = array("month", "week", "day", "hour");
 
     /**
      * List of permitted restrict kinds (used in @setRestrictKind)
-     * 
+     *
      * @var array
      */
     private $availableRestrictKinds = array("category", "activity", "productivity", "document");
 
     /**
      * Default values of all parameters handled by this object
-     * 
+     *
      * @var array
      */
     private $defaultParams = [
@@ -219,7 +219,7 @@ class RequestQueryParameters
      * Utilized for reading data from inaccessible properties
      *
      * @param  string $attribute Property name
-     * 
+     *
      * @return mixed Property value
      */
     public function __get($attribute)
