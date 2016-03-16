@@ -10,6 +10,8 @@
 
 namespace RescueTime;
 
+use RescueTime\RequestQueryParameters;
+
 /**
  * This class provides a client API for RescueTime Analytic Data API
  *
@@ -61,53 +63,19 @@ class Client
     /**
      * Returns list of RescueTime activities for selected search criteria
      *
-     * @param  string    $perspective      One of "rank", "interval", "member"
-     * @param  string    $resolution_time  One of "month", "week", "day", "hour"
-     * @param  string    $restrict_group   One group name
-     * @param  string    $restrict_user    One user name or user email
-     * @param  \DateTime $restrict_begin   Sets the start day for data batch
-     * @param  \DateTime $restrict_end     Sets the end day for data batch
-     * @param  string    $restrict_kind    One of "category", "activity", "productivity"
-     * @param  string    $restrict_project Name of project
-     * @param  string    $restrict_thing   Name of category, activity, or overview
-     * @param  string    $restrict_thingy  Name of specific "document" or "activity"
+     * @param  RequestQueryParameters A set of parameters to retrieve
      *
      * @return array<\RescueTime\Activity> All activities, or false if none found
      *
-     * @throws \Exception If API returns error
+     * @throws \RuntimeException If API returns error
      * @see  \RescueTime\RequestQueryParameters
      */
-    public function getActivities(
-        $perspective = null,
-        $resolution_time = null,
-        $restrict_group = null,
-        $restrict_user = null,
-        \DateTime $restrict_begin = null,
-        \DateTime $restrict_end = null,
-        $restrict_kind = null,
-        $restrict_project = null,
-        $restrict_thing = null,
-        $restrict_thingy = null
-    ) {
-        $requestQueryParameters = new RequestQueryParameters(
-            compact(
-                'perspective',
-                'resolution_time',
-                'restrict_group',
-                'restrict_user',
-                'restrict_begin',
-                'restrict_end',
-                'restrict_kind',
-                'restrict_project',
-                'restrict_thing',
-                'restrict_thingy'
-            )
-        );
-
+    public function getActivities(RequestQueryParameters $requestQueryParameters)
+    {
         $responseJsonArray = $this->httpClient->request($requestQueryParameters);
 
         if (array_key_exists('error', $responseJsonArray)) {
-            throw new \Exception("API returned error: " . $responseJsonArray['error']);
+            throw new \RuntimeException("API returned error: " . $responseJsonArray['error']);
         }
 
         $result = array();
