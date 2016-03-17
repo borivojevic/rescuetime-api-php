@@ -50,7 +50,7 @@ The main entry point of the library is the `RescueTime\Client` class. API method
 ``` php
 <?php
 
-use RescueTime\RequestQueryParams as Params;
+use RescueTime\RequestQueryParameters as Params;
 use RescueTime\Client;
 
 $client = new Client($apiKey);
