@@ -49,10 +49,14 @@ The main entry point of the library is the `RescueTime\Client` class. API method
 
 ``` php
 <?php
-$Client = new \RescueTime\Client($apiKey);
+
+use RescueTime\RequestQueryParams as Params;
+use RescueTime\Client;
+
+$client = new Client($apiKey);
 
 // Basic example
-$activities = $Client->getActivities("rank");
+$activities = $client->getActivities(new Params(['perspective' => 'rank']));
 
 foreach ($activities as $activity) {
     echo $activity->getActivityName();
@@ -60,52 +64,54 @@ foreach ($activities as $activity) {
 }
 
 // Fetch activities for past week
-$activities = $this->Client->getActivities(
-    "interval",
-    "day",
-    null,
-    null,
-    new \DateTime("-6 day"),
-    new \DateTime("today")
+$activities = $client->getActivities(
+    new Params([
+        'perspective' => 'interval',
+        'resolution_time' => 'day',
+        'restrict_begin' => new \DateTime("-6 day"),
+        'restrict_end' => new \DateTime("today")
+    ])
 );
 
 // Fetch productivity data grouped by activity
-$activities = $this->Client->getActivities(
-    "interval",
-    "day",
-    null,
-    null,
-    new \DateTime("-6 day"),
-    new \DateTime("today"),
-    "activity"
+$activities = $client->getActivities(
+    new Params([
+        'perspective' => 'interval',
+        'resolution_time' => 'day',
+        'restrict_begin' => new \DateTime("-6 day"),
+        'restrict_end' => new \DateTime("today"),
+        'restrict_kind' => 'activity'
+    ])
 );
 
 // Fetch productivity data grouped by category
-$activities = $this->Client->getActivities(
-    "interval",
-    "day",
-    null,
-    null,
-    new \DateTime("-6 day"),
-    new \DateTime("today"),
-    "category"
+$activities = $client->getActivities(
+    new Params([
+        'perspective' => 'interval',
+        'resolution_time' => 'day',
+        'restrict_begin' => new \DateTime("-6 day"),
+        'restrict_end' => new \DateTime("today"),
+        'restrict_kind' => 'category'
+    ])
 );
 ```
 
 You can build more complex queries and filter down the data by providing other query parameters:
 
 ``` php
-$this->Client->getActivities(
-    <perspective>,
-    <resolution_time>,
-    <restrict_group>,
-    <restrict_user>,
-    <restrict_begin>,
-    <restrict_end>,
-    <restrict_kind>,
-    <restrict_project>,
-    <restrict_thing>,
-    <restrict_thingy>
+$client->getActivities(
+    new Params([
+        "perspective" => <rank|interval|member>,
+        "resolution_time" => <month|week|day|hour>,
+        "restrict_group" => <group name>,
+        "restrict_user" => <user name/user email>,
+        "restrict_begin" => <\DateTime>,
+        "restrict_end" => <\DateTime>,
+        "restrict_kind" => <category|activity|productivity|document>,
+        "restrict_project" => <project name>,
+        "restrict_thing" => <category name/activity name/overview name>,
+        "restrict_thingy" => <document name/activity name>
+    ])
 );
 ```
 

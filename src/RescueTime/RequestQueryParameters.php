@@ -194,6 +194,19 @@ class RequestQueryParameters
     /**
      * Constructs RequestQueryParameters class
      *
+     * Available options to specify in the params argument:
+     * 
+     * string    perspective      One of "rank", "interval", "member"
+     * string    resolution_time  One of "month", "week", "day", "hour"
+     * string    restrict_group   One group name
+     * string    restrict_user    One user name or user email
+     * \DateTime restrict_begin   Sets the start day for data batch
+     * \DateTime restrict_end     Sets the end day for data batch
+     * string    restrict_kind    One of "category", "activity", "productivity", "document"
+     * string    restrict_project Name of project
+     * string    restrict_thing   Name of category, activity, or overview
+     * string    restrict_thingy  Name of specific "document" or "activity"
+     *
      * @param array $params
      */
     public function __construct(array $params)
