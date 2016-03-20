@@ -20,7 +20,7 @@ Recommend way to install this package with [Composer][]. Add borivojevic/rescuet
 ``` json
 {
     "require": {
-        "borivojevic/rescuetime": "1.*"
+        "borivojevic/rescuetime": "2.*"
     }
 }
 ```
