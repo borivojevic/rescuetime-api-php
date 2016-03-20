@@ -1,6 +1,8 @@
 <?php
 namespace RescueTime\Tests;
 
+use RescueTime\RequestQueryParameters as Params;
+
 class ClientTest extends \PHPUnit_Framework_TestCase
 {
     /**
@@ -42,7 +44,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 
         $this->Client->httpClient = $httpClient;
 
-        $activities = $this->Client->getActivities("rank");
+        $activities = $this->Client->getActivities(new Params($requestParams));
 
         $this->assertTrue(is_array($activities), "Expected activities to be an array");
         $this->assertEquals(15, count($activities), "Expected to return 15 activities");
@@ -64,7 +66,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 
         $this->Client->httpClient = $httpClient;
 
-        $activities = $this->Client->getActivities("interval");
+        $activities = $this->Client->getActivities(new Params($requestParams));
 
         $this->assertTrue(is_array($activities), "Expected activities to be an array");
         $this->assertEquals(14, count($activities), "Expected to return 14 activities");
@@ -86,36 +88,36 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 
         $this->Client->httpClient = $httpClient;
 
-        $activities = $this->Client->getActivities("member");
+        $activities = $this->Client->getActivities(new Params($requestParams));
 
         $this->assertTrue(is_array($activities), "Expected activities to be an array");
         $this->assertEquals(17, count($activities), "Expected to return 17 activities");
     }
 
     /**
-     * @expectedException        Exception
-     * @expectedExceptionMessage Perspective must be one of rank, interval or member
+     * @expectedException        InvalidArgumentException
+     * @expectedExceptionMessage Perspective must be one of rank, interval, member
      */
     public function testInvalidPerspective()
     {
-        $this->Client->getActivities('invalid_perspective_name');
+        $this->Client->getActivities(new Params(['perspective' => 'invalid_perspective_name']));
     }
 
     /**
-     * @expectedException        Exception
-     * @expectedExceptionMessage Resolution time must be one of month, week, day or hour
+     * @expectedException        InvalidArgumentException
+     * @expectedExceptionMessage Resolution time must be one of month, week, day, hour
      */
     public function testInvalidResolutionTime()
     {
-        $this->Client->getActivities(null, 'invalid_resolution_time');
+        $this->Client->getActivities(new Params(['resolution_time' => 'invalid_resolution_time']));
     }
 
     /**
-     * @expectedException        Exception
+     * @expectedException        InvalidArgumentException
      * @expectedExceptionMessage Restrict kind must be one of category, activity, productivity
      */
     public function testInvalidRestrictKind()
     {
-        $this->Client->getActivities(null, null, null, null, null, null, 'invalid_restrict_kind');
+        $this->Client->getActivities(new Params(['restrict_kind' => 'invalid_restrict_kind']));
     }
 }

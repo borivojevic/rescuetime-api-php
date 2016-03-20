@@ -15,22 +15,6 @@ namespace RescueTime;
  */
 class RequestQueryParameters
 {
-
-    /**
-     * RescueTime API token
-     *
-     * @var string
-     */
-    private $apiKey;
-
-    /**
-     * API request format (defaulted to json)
-     *
-     * API provides data in CSV or JSON format
-     *
-     */
-    private $format;
-
     /**
      * Currently, only one operation is supported, "select",
      * and it is enforced on the server,
@@ -167,24 +151,79 @@ class RequestQueryParameters
     private $restrict_thingy;
 
     /**
+     * List of permitted perspectives (used in @setPerspective)
+     *
+     * @var array
+     */
+    private $availablePerspectives = array("rank", "interval", "member");
+
+    /**
+     * List of permitted resolution times (used in @setResolutionTimes)
+     *
+     * @var array
+     */
+    private $availableResolutionTimes = array("month", "week", "day", "hour");
+
+    /**
+     * List of permitted restrict kinds (used in @setRestrictKind)
+     *
+     * @var array
+     */
+    private $availableRestrictKinds = array("category", "activity", "productivity", "document");
+
+    /**
+     * Default values of all parameters handled by this object
+     *
+     * @var array
+     */
+    private $defaultParams = [
+        'operation' => null,
+        'version' => null,
+        'perspective' => 'rank',
+        'resolution_time' => 'hour',
+        'restrict_group' => null,
+        'restrict_user' => null,
+        'restrict_begin' => null,
+        'restrict_end' => null,
+        'restrict_kind' => null,
+        'restrict_project' => null,
+        'restrict_thing' => null,
+        'restrict_thingy' => null,
+    ];
+
+    /**
      * Constructs RequestQueryParameters class
+     *
+     * Available options to specify in the params argument:
+     * 
+     * string    perspective      One of "rank", "interval", "member"
+     * string    resolution_time  One of "month", "week", "day", "hour"
+     * string    restrict_group   One group name
+     * string    restrict_user    One user name or user email
+     * \DateTime restrict_begin   Sets the start day for data batch
+     * \DateTime restrict_end     Sets the end day for data batch
+     * string    restrict_kind    One of "category", "activity", "productivity", "document"
+     * string    restrict_project Name of project
+     * string    restrict_thing   Name of category, activity, or overview
+     * string    restrict_thingy  Name of specific "document" or "activity"
      *
      * @param array $params
      */
-    public function __construct($params)
+    public function __construct(array $params)
     {
+        $params = $params + $this->defaultParams;
         $this->operation = 'select';
         $this->version = 0;
-        $this->setPerspective($params['perspective'] ?: 'rank');
-        $this->setResolutionTime($params['resolution_time'] ?: 'hour');
-        $this->restrict_group = $params['restrict_group'] ?: null;
-        $this->restrict_user = $params['restrict_user'] ?: null;
-        $this->restrict_begin = $params['restrict_begin'] ?: null;
-        $this->restrict_end = $params['restrict_end'] ?: null;
-        $this->setRestrictKind($params['restrict_kind'] ?: null);
-        $this->restrict_project = $params['restrict_project'] ?: null;
-        $this->restrict_thing = $params['restrict_thing'] ?: null;
-        $this->restrict_thingy = $params['restrict_thingy'] ?: null;
+        $this->setPerspective($params['perspective']);
+        $this->setResolutionTime($params['resolution_time']);
+        $this->restrict_group = $params['restrict_group'];
+        $this->restrict_user = $params['restrict_user'];
+        $this->restrict_begin = $params['restrict_begin'];
+        $this->restrict_end = $params['restrict_end'];
+        $this->setRestrictKind($params['restrict_kind']);
+        $this->restrict_project = $params['restrict_project'];
+        $this->restrict_thing = $params['restrict_thing'];
+        $this->restrict_thingy = $params['restrict_thingy'];
     }
 
     /**
@@ -193,6 +232,7 @@ class RequestQueryParameters
      * Utilized for reading data from inaccessible properties
      *
      * @param  string $attribute Property name
+     *
      * @return mixed Property value
      */
     public function __get($attribute)
@@ -201,89 +241,58 @@ class RequestQueryParameters
             return $this->$attribute;
         }
 
-        $trace = debug_backtrace();
-        trigger_error(
-            'Undefined property via __get(): ' . $attribute .
-            ' in ' . $trace[0]['file'] .
-            ' on line ' . $trace[0]['line'],
-            E_USER_NOTICE
-        );
         return null;
     }
 
     /**
      * Sets perspective property
+     * Please refer to @availablePerspectives for available options
      *
      * @param string $perspective
-     * @throws \Exception If perspective not in "rank", "interaval", "member"
+     * @throws \InvalidArgumentException If perspective not in available perspectives
      */
     public function setPerspective($perspective)
     {
-        if ($perspective && !in_array($perspective, array("rank", "interval", "member"))) {
-            throw new \Exception("Perspective must be one of rank, interval or member");
+        if ($perspective && !in_array($perspective, $this->availablePerspectives)) {
+            throw new \InvalidArgumentException(
+                sprintf("Perspective must be one of %s", implode(', ', $this->availablePerspectives))
+            );
         }
         $this->perspective = $perspective;
     }
 
     /**
      * Sets resolution property
+     * Please refer to @availableResolutionTimes for available options
      *
      * @param string $resolution
-     * @throws \Exception If resolution not in "month", "week", "day", "hour"
+     * @throws \InvalidArgumentException If resolution not in available resolution times
      */
     public function setResolutionTime($resolution)
     {
-        if ($resolution && !in_array($resolution, array("month", "week", "day", "hour"))) {
-            throw new \Exception("Resolution time must be one of month, week, day or hour");
+        if ($resolution && !in_array($resolution, $this->availableResolutionTimes)) {
+            throw new \InvalidArgumentException(
+                sprintf("Resolution time must be one of %s", implode(', ', $this->availableResolutionTimes))
+            );
         }
         $this->resolution_time = $resolution;
     }
 
     /**
      * Sets resetrict_kind property
+     * Please refer to @availableRestrictKinds for available options
      *
      * @param string $kind
-     * @throws  \Exception If property not in "category", "activity", "productivity"
+     * @throws \InvalidArgumentException If property not in available restrict kinds
      */
     public function setRestrictKind($kind)
     {
-        if ($kind && !in_array($kind, array("category", "activity", "productivity"))) {
-            throw new \Exception("Restrict kind must be one of category, activity, productivity");
+        if ($kind && !in_array($kind, $this->availableRestrictKinds)) {
+            throw new \InvalidArgumentException(
+                sprintf("Restrict kind must be one of %s", implode(', ', $this->availableRestrictKinds))
+            );
         }
         $this->restrict_kind = $kind;
-    }
-
-    /**
-     * Class properties mutator
-     *
-     * Run when writing data to inaccessible properties
-     *
-     * @param string $attribute Property name
-     * @param string $value     Property value
-     */
-    public function __set($attribute, $value)
-    {
-        if ($attribute == "perspective") {
-            $this->setPerspective($value);
-            return true;
-        } elseif ($attribute == "resolution_time") {
-            $this->setResolutionTime($value);
-            return true;
-        } elseif ($attribute == "restrict_kind") {
-            $this->setRestrictKind($value);
-            return true;
-        } elseif (property_exists($this, $attribute)) {
-            $this->$attribute = $value;
-            return true;
-        }
-
-        $trace = debug_backtrace();
-        trigger_error(
-            'Undefined property via __set(): ' . $attribute .
-            ' in ' . $trace[0]['file'] .
-            ' on line ' . $trace[0]['line'],
-            E_USER_NOTICE
-        );
     }
 
     /**
@@ -294,8 +303,6 @@ class RequestQueryParameters
     public function toArray()
     {
         $queryParams = array(
-            'key' => $this->apiKey,
-            'format' => $this->format,
             'operation' => $this->operation,
             'version' => $this->version,
             'perspective' => $this->perspective,
@@ -313,12 +320,7 @@ class RequestQueryParameters
         if ($this->restrict_end) {
             $queryParams['restrict_end'] = $this->restrict_end->format('Y-m-d');
         }
-        $queryParams = array_filter(
-            $queryParams,
-            function ($el) {
-                return !is_null($el);
-            }
-        );
-        return $queryParams;
+
+        return array_filter($queryParams);
     }
 }

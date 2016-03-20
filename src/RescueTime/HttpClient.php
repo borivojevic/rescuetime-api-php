@@ -59,14 +59,12 @@ class HttpClient
      */
     public function request(RequestQueryParameters $params)
     {
-        $params->apiKey = $this->apiKey;
-        $params->format = $this->format;
         $client = $this->guzzleClient ?: new GuzzleClient($this->apiEndpoint);
 
         $request = $client->get(
             '/anapi/data',
-            array('Accept' => 'application/json'),
-            array('query' => $params->toArray())
+            ['Accept' => 'application/json'],
+            ['query' => ['key' => $this->apiKey, 'format' => $this->format] + $params->toArray()]
         );
 
         $response = $request->send();
