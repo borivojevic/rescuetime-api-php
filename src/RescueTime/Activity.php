@@ -132,8 +132,8 @@ class Activity
 
         foreach ($columns as $key => $value) {
             if (array_key_exists($key, $properties)) {
-				$property = $properties[$key];
-				$this->$property = $value;
+                $property = $properties[$key];
+                $this->$property = $value;
             }
         }
     }

@@ -21,6 +21,7 @@ When machine boots up ssh into it by typing:
 
 ```
 vagrant ssh
+# password: vagrant
 ```
 
 **On Windows**: Use : ssh vagrant@127.0.0.1 -p 2222
@@ -33,6 +34,7 @@ The application code is found in vagrant home directory at /home/vagrant
 The very first time you'll have to install application dependencies:
 
 ```
+sudo composer self-update
 composer install
 ```
 

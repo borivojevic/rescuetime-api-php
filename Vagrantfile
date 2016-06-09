@@ -3,7 +3,7 @@
 
 Vagrant.configure("2") do |config|
   config.vm.box = "rescuetime-0.1.0"
-  config.vm.box_url = "https://dl.dropboxusercontent.com/u/15406475/VagrantBoxes/rescuetime.box"
+  config.vm.box_url = "https://s3.amazonaws.com/rescuetime-api-php/rescuetime.box"
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
