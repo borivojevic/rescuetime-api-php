@@ -73,6 +73,26 @@ class HttpClient
     }
 
     /**
+     * Sends Daily Report request to RescueTime API
+     *
+     * @return array Decoded json returned by server
+     */
+    public function requestDailyReport()
+    {
+        $client = $this->guzzleClient ?: new GuzzleClient($this->apiEndpoint);
+
+        $request = $client->get(
+            '/anapi/daily_summary_feed',
+            ['Accept' => 'application/json'],
+            ['query' => ['key' => $this->apiKey, 'format' => $this->format]]
+        );
+
+        $response = $request->send();
+
+        return $this->handleResponse($response);
+    }
+
+    /**
      * Parses RescueTime API response and handles HTTP/API errors
      * @param  String $response Raw API response
      * @return array            Decoded json returned by server

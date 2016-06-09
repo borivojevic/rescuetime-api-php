@@ -93,6 +93,27 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue(is_array($activities), "Expected activities to be an array");
         $this->assertEquals(17, count($activities), "Expected to return 17 activities");
     }
+    
+    public function testGetDailyReport()
+    {
+        $data = file_get_contents(__DIR__ . '/Fakes/daily_report.json');
+        $requestParams = array();
+
+        $httpClient = $this->getMockBuilder('\RescueTime\HttpClient')
+            ->setConstructorArgs(array($requestParams))
+            ->setMethods(array('requestDailyReport'))
+            ->getMock();
+        $httpClient->expects($this->once())
+            ->method('requestDailyReport')
+            ->will($this->returnValue(json_decode($data, true)));
+
+        $this->Client->httpClient = $httpClient;
+
+        $report = $this->Client->getDailySummary();
+
+        $this->assertTrue(is_array($report), "Expected activities to be an array");
+        $this->assertEquals(15, count($report), "Expected to return 15 activities");
+    }    
 
     /**
      * @expectedException        InvalidArgumentException
