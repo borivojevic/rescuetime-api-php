@@ -94,6 +94,13 @@ $activities = $client->getActivities(
         'restrict_kind' => 'category'
     ])
 );
+
+// Fetch daily productivity report data for past two weeks
+$daily_summary = $client->getDailySummary();
+
+foreach ($daily_summary as $day_summary) {
+    echo $day_summary->getTotalDurationFormatted();
+}
 ```
 
 You can build more complex queries and filter down the data by providing other query parameters:

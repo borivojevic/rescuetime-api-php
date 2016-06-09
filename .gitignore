@@ -12,3 +12,6 @@
 .composer/
 vendor/
 composer.lock
+
+# Ignore IDE stuff
+.idea

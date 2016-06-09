@@ -12,6 +12,7 @@ namespace RescueTime;
 
 use RescueTime\RequestQueryParameters;
 
+
 /**
  * This class provides a client API for RescueTime Analytic Data API
  *
@@ -82,6 +83,32 @@ class Client
         $rowHeaders = $responseJsonArray['row_headers'];
         foreach ($responseJsonArray['rows'] as $columns) {
             $result[]  = new Activity($rowHeaders, $columns);
+        }
+
+        return $result ?: false;
+    }
+
+    /**
+     * Returns list of daily summary activities
+     *
+     *
+     * @return array<\RescueTime\DailyReport> All activities for previous two weeks without current day, or false if none found
+     *
+     * @throws \RuntimeException If API returns error
+     * @see  \RescueTime\RequestQueryParameters
+     */
+    public function getDailySummary()
+    {
+
+        $responseJsonArray = $this->httpClient->requestDailyReport();
+
+        if (array_key_exists('error', $responseJsonArray)) {
+            throw new \RuntimeException("API returned error: " . $responseJsonArray['error']);
+        }
+
+        $result = array();
+        foreach ($responseJsonArray as $responseRecord) {
+            $result[]  = new DailyReport($responseRecord);
         }
 
         return $result ?: false;
