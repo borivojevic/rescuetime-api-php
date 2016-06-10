@@ -82,7 +82,7 @@ class Client
         $result = array();
         $rowHeaders = $responseJsonArray['row_headers'];
         foreach ($responseJsonArray['rows'] as $columns) {
-            $result[]  = new Activity($rowHeaders, $columns);
+            $result[] = new Activity($rowHeaders, $columns);
         }
 
         return $result ?: false;
@@ -108,7 +108,7 @@ class Client
 
         $result = array();
         foreach ($responseJsonArray as $responseRecord) {
-            $result[]  = new DailyReport($responseRecord);
+            $result[] = new DailyReport($responseRecord);
         }
 
         return $result ?: false;
