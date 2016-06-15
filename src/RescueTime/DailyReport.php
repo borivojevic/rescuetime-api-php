@@ -707,6 +707,17 @@ class DailyReport
     }
 
     /**
+     * Returns hours (Float with two decimal places) representation of time spent in distracting category
+     *
+     *
+     * @return float
+     */
+    public function getVeryDistractingHours()
+    {
+        return $this->very_distracting_hours;
+    }
+
+    /**
      * Returns hours (Float with two decimal places) representation of time spent in all productive categories
      *
      *
@@ -902,6 +913,17 @@ class DailyReport
     public function getDistractingDurationFormatted()
     {
         return $this->distracting_duration_formatted;
+    }
+
+    /**
+     * Returns hours (Float with two decimal places) representation of time spent in distracting category
+     *
+     *
+     * @return string
+     */
+    public function getVeryDistractingDurationFormatted()
+    {
+        return $this->very_distracting_duration_formatted;
     }
 
     /**
