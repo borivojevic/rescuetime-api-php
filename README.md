@@ -100,6 +100,8 @@ $daily_summary = $client->getDailySummary();
 
 foreach ($daily_summary as $day_summary) {
     echo $day_summary->getTotalDurationFormatted();
+    echo $day_summary->getVeryDistractingHours();
+    echo $day_summary->getVeryDistractingDurationFormatted();
 }
 ```
 
